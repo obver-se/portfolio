@@ -1,0 +1,46 @@
+mixin navLink(text, href)
+  a(href=href, class="bg-black text-red-500 py-4 pt-6 mr-4 border-b-2 border-transparent hover:border-red-600")= text
+
+mixin socialCue(fontClass, label, url)
+  a(href=url, aria-label=label class="text-3xl px-3")
+    i(class=fontClass)
+
+mixin seoTags(url, title, description)
+  title=title
+  meta(name="description", content=description)
+  meta(property="og:title", content=title)
+  meta(property="og:site_name", content="Daniel Machen")
+  meta(property="og:description", content=description)
+  meta(property="og:locale", content="en_US")
+  meta(property="og:type", content="website")
+  link(href=url, rel="canonical")
+
+mixin header()
+  header(class="w-full max-width-md h-full mx-auto py-4")
+    div(class="mb-4")
+      div(class="pb-2 justify-between md:flex items-center text-center")
+        h1(class="text-5xl") Daniel Machen
+        div(class="whitespace-nowrap mt-4 md:mt-0 md:inline")
+          +socialCue("fab fa-github", "github", "https://github.com/obver-se/")
+          +socialCue("fab fa-linkedin", "linkedin", "https://www.linkedin.com/in/daniel-machen/")
+          +socialCue("fas fa-envelope-square", "email", "mailto:daniel@danielmachen.net")
+    hr(class="opacity-75")
+    nav(class="z-50 w-full pt-4 pb-6 bg-black text-center md:text-left")
+      +navLink("about", "/#about")
+      +navLink("projects", "/#projects")
+      +navLink("contact", "/#contact")
+
+doctype html
+html(lang='en')
+  head
+    block head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  body(class="bg-black text-white font-light px-0 md:px-4")
+    section#about(class="mx-auto max-w-screen-md flex flex-col relative min-h-screen px-4 md:px-0")
+      +header
+      div(class="md:mb-32 flex justify-center flex-1 flex-col justify-center items-stretch")
+        block hero
+    main(class="max-w-screen-md m-auto")
+      div
+        block content

@@ -1,0 +1,120 @@
+- var techHTML5 =      { "title": "HTML5",        "icon": "fab fa-html5" } 
+- var techCSS3 =       { "title": "CSS3",         "icon": "fab fa-css3-alt" }
+- var techJavaScript = { "title": "JavaScript",   "icon": "fab fa-js" }
+- var techLinux =      { "title": "Linux",        "icon": "fab fa-linux" }
+- var techPython =     { "title": "Python",       "icon": "fab fa-python" } 
+- var techGitHub =     { "title": "GitHub",       "icon": "fab fa-github-square" }
+- var techNode =       { "title": "Node.js",      "icon": "fab fa-node" }
+- var techC =          { "title": "C",            "icon": "fas fa-file" }
+- var techFlask =      { "title": "Flask",       "image": "./assets/flask-tech.svg" }
+- var technginx =      { "title": "nginx",       "image": "./assets/nginx-tech.svg" }
+- var techSDL2 =       { "title": "SDL2",        "image": "./assets/sdl-tech.svg" }
+- var techD3 =         { "title": "D3.js",       "image": "./assets/d3-tech.svg" }
+- var techTypescript = { "title": "TypeScript",  "image": "./assets/typescript-tech.svg" }
+- var techNetlify =    { "title": "netlify",     "image": "./assets/netlify-tech.svg" }
+- var techWebpack =    { "title": "webpack",     "image": "./assets/webpack-tech.svg" }
+- var techTailwind =   { "title": "tailwindcss", "image": "./assets/tailwind-tech.svg" }
+
+mixin techIcon(text, img, link)
+  div(class="w-full h-16 text-center")
+    a(href=link, class="w-full h-full")
+      img(class="m-auto mb-1 w-12 h-12", 
+          src=img,
+          aria-hidden="true")
+      span(class="block p-1 text-gray-400")= text
+
+mixin techIconFontAwesome(text, fontClass, link)
+  div(class="w-16 h-16")
+    a(href=link, class="block w-full h-full")
+      i(class="w-full h-12 mb-1 text-5xl " + fontClass,
+        aria-hidden="true")
+      span(class="block p-1 text-gray-400")= text
+
+mixin gridImages(images)
+  div(class="md:h-full grid-cols-1")
+    div(class="w-full md:h-full grid grid-cols-2 md:grid-cols-2 md:grid-rows-1 gap-2")
+      each image, index in images
+        if index == 0
+          div(class="col-span-2 block")
+            img(src=image['src'], alt=image['alt'], class="w-full h-full object-cover rounded")
+        else
+          div(class="block")
+            img(src=image['src'], alt=image['alt'], class="w-full h-full object-cover rounded")
+
+mixin linkList(links)
+  div
+    h4(class="md:text-2xl opacity-60") links:
+    ol
+      each link in links
+        li
+          a(href=link['href'], class="bg-white md:bg-transparent bg-opacity-5 block rounded py-2 my-4 w-full md:m-0 md:w-auto md:padding-0 text-red-500")= link['title'] + " "
+            i(class="fas fa-external-link-alt")
+
+mixin techGrid(techs)
+  div(class="grid grid-cols-6 grid-flow-row gap-y-8 my-3 justify-items-center")
+    - let firstTriplets = techs
+    - let lastFew = []
+    if (techs.length % 3 != 0)
+      - lastFew = techs.slice(-(techs.length % 3))
+      - firstTriplets = techs.slice(0, -(techs.length % 3))
+
+    - let lastColSpan = ["", "col-span-6", "col-span-3", "col-span-2"][lastFew.length]
+    each tech in firstTriplets
+      div(class="text-center col-span-2 text-xs")
+        if 'icon' in tech 
+          +techIconFontAwesome(tech['title'], tech['icon'])
+        else
+          +techIcon(tech['title'], tech['image'])
+
+    each tech in lastFew
+      div(class="text-center text-xs " + lastColSpan)
+        if 'icon' in tech 
+          +techIconFontAwesome(tech['title'], tech['icon'])
+        else
+          +techIcon(tech['title'], tech['image'])
+
+
+mixin projectCard(title, date, techs, images, links)
+  div(class="bg-white bg-opacity-5 md:rounded \
+             p-8 pb-4 pt-8 my-8 md:mx-4 md:mx-0 \
+             grid grid-cols-1 items-center")
+    div(class="w-full text-center md:flex justify-between items-center pb-8")
+      h3(class="inline text-4xl text-center md:text-left h-1 md:h-auto")=title
+      br
+      h4(class="text-left inline-block opacity-50 md:text-right")=date
+
+    div(class="grid grid-cols-1 gap-y-8 items-center " + (images ? "md:grid-cols-2 gap-x-8": ""))
+
+      if images
+        +gridImages(images)
+
+      div(class="w-full")
+        div(class="text-center")
+          h4(class="text-center mb-2 text-2xl") Description:
+          block
+
+        div(class="my-8")
+          h4(class="text-center text-2xl mt-6") Technologies Used:
+          +techGrid(techs)
+
+    div(class="text-center md:mt-4")
+      +linkList(links)
+
+mixin projectCardSmall(title, date, techs, links)
+  div(class="bg-white bg-opacity-5 rounded \
+             p-8 pb-4 pt-8 my-8 md:mx-4 md:mx-0 \
+             grid grid-cols-1 items-center")
+    div(class="w-full text-center md:flex justify-between items-center")
+      h3(class="inline text-4xl text-center md:text-left h-1 md:h-auto")=title
+      br
+      h4(class="text-left inline-block opacity-50 md:text-right")=date
+
+    div(class="grid grid-cols-1 items-center")
+
+      div(class="w-full mt-8")
+        div(class="text-center")
+          block
+        div(class="my-8")
+          +techGrid(techs)
+    div(class="text-center")
+      +linkList(links)
