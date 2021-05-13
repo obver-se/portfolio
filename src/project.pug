@@ -51,7 +51,7 @@ mixin linkList(links)
             i(class="fas fa-external-link-alt")
 
 mixin techGrid(techs)
-  div(class="grid grid-cols-6 grid-flow-row gap-y-8 my-3 justify-items-center")
+  div(class="grid grid-cols-6 grid-flow-row gap-y-8 justify-items-center max-w-sm my-3 m-auto")
     - let firstTriplets = techs
     - let lastFew = []
     if (techs.length % 3 != 0)
@@ -94,7 +94,7 @@ mixin projectCard(title, date, techs, images, links)
           block
 
         div(class="my-8")
-          h4(class="text-center text-2xl mt-6") Technologies Used:
+          h4(class="text-center text-2xl mb-4 mt-6") Technologies Used:
           +techGrid(techs)
 
     div(class="text-center md:mt-4")
@@ -109,9 +109,9 @@ mixin projectCardSmall(title, date, techs, links)
       br
       h4(class="text-left inline-block opacity-50 md:text-right")=date
 
-    div(class="grid grid-cols-1 items-center")
+    div(class="m-auto max-w-md items-center")
 
-      div(class="w-full mt-8")
+      div(class="w-full mt-6")
         div(class="text-center")
           block
         div(class="my-8")
