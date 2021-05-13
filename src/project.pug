@@ -47,7 +47,7 @@ mixin linkList(links)
     ol
       each link in links
         li
-          a(href=link['href'], class="bg-white md:bg-transparent bg-opacity-5 block rounded py-2 my-4 w-full md:m-0 md:w-auto md:padding-0 text-red-500")= link['title'] + " "
+          a(href=link['href'], class="bg-white md:bg-transparent bg-opacity-5 block rounded py-2 my-4 w-full md:m-0 md:w-auto md:padding-0 text-link-accent")= link['title'] + " "
             i(class="fas fa-external-link-alt")
 
 mixin techGrid(techs)

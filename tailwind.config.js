@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: [
     './src/**/*.pug',
@@ -8,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         'material-black': '#121212',
+        'link-accent': colors.red[500],
       },
     },
   },

@@ -1,5 +1,5 @@
 mixin navLink(text, href)
-  a(href=href, class="bg-material-black text-red-500 py-4 pt-6 mr-4 border-b-2 border-transparent hover:border-red-600")= text
+  a(href=href, class="bg-material-black text-link-accent py-4 pt-6 mr-4 border-b-2 border-transparent hover:border-red-600")= text
 
 mixin socialCue(fontClass, label, url)
   a(href=url, aria-label=label class="text-3xl px-3")
@@ -17,7 +17,7 @@ mixin seoTags(url, title, description)
 
 mixin header()
   header(class="w-full max-width-md h-full mx-auto py-4")
-    div(class="mb-4")
+    div(class="mb-6 mt-2")
       div(class="pb-2 justify-between md:flex items-center text-center")
         h1(class="text-5xl") Daniel Machen
         div(class="whitespace-nowrap mt-4 md:mt-0 md:inline")
@@ -25,7 +25,7 @@ mixin header()
           +socialCue("fab fa-linkedin", "linkedin", "https://www.linkedin.com/in/daniel-machen/")
           +socialCue("fas fa-envelope-square", "email", "mailto:daniel@danielmachen.net")
     hr(class="opacity-75")
-    nav(class="z-50 w-full pt-4 pb-6 bg-material-black text-center md:text-left")
+    nav(class="z-50 w-full mt-2 pt-4 pb-6 bg-material-black text-center md:text-left")
       +navLink("about", "/#about")
       +navLink("projects", "/#projects")
       +navLink("contact", "/#contact")

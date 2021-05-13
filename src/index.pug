@@ -1,7 +1,7 @@
 extends layout
 
 mixin emailAddress(address)
-  a(href="mailto:" + address, class="text-red-500 text-xl")= address
+  a(href="mailto:" + address, class="text-link-accent text-xl")= address
 
 block head
   +seoTags("https://danielmachen.net", 
@@ -16,7 +16,7 @@ block hero
         h2(class="text-4xl") Hey! 
         br
         | I'm a software developer based in the Seattle area that's always ready to write code and make commits. I'm always working on a new project. 
-        a(class="text-red-500", href="/#projects")
+        a(class="text-link-accent", href="/#projects")
           | Scroll&nbsp;down 
         | to have a look at some of them.
       img(src="./assets/self2222.png", 
