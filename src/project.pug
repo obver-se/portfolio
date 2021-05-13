@@ -75,7 +75,7 @@ mixin techGrid(techs)
 
 
 mixin projectCard(title, date, techs, images, links)
-  div(class="bg-white bg-opacity-5 md:rounded \
+  div(class="shadow-lg bg-white bg-opacity-5 md:rounded \
              p-8 pb-4 pt-8 my-8 md:mx-4 md:mx-0 \
              grid grid-cols-1 items-center")
     div(class="w-full text-center md:flex justify-between items-center pb-8")
@@ -101,7 +101,7 @@ mixin projectCard(title, date, techs, images, links)
       +linkList(links)
 
 mixin projectCardSmall(title, date, techs, links)
-  div(class="bg-white bg-opacity-5 rounded \
+  div(class="shadow-lg bg-white bg-opacity-5 md:rounded \
              p-8 pb-4 pt-8 my-8 md:mx-4 md:mx-0 \
              grid grid-cols-1 items-center")
     div(class="w-full text-center md:flex justify-between items-center")

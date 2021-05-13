@@ -5,9 +5,10 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    maxHeight: {
-      '1/2': '50%',
+    extend: {
+      colors: {
+        'material-black': '#121212',
+      },
     },
   },
   variants: {
