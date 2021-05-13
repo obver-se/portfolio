@@ -34,11 +34,12 @@ mixin gridImages(images)
   div(class="md:h-full grid-cols-1")
     div(class="w-full md:h-full grid grid-cols-2 md:grid-cols-2 md:grid-rows-1 gap-2")
       each image, index in images
-        if index == 0
-          div(class="col-span-2 block")
-            img(src=image['src'], alt=image['alt'], class="w-full h-full object-cover rounded")
-        else
-          div(class="block")
+        div(class="block " + ((index == 0) ? 'col-span-2' : ''))
+          if image['src'].endsWith('webm')
+            video(autoplay, muted, loop)
+              source(src=image['src'])
+              | It would appear you browser doesn't support video
+          else
             img(src=image['src'], alt=image['alt'], class="w-full h-full object-cover rounded")
 
 mixin linkList(links)
