@@ -1,7 +1,5 @@
 import "./style.sass";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-/*import './index.pug';
-import './404.pug';*/
 
 /*
  * Get the url and the named anchor seperately
@@ -41,4 +39,6 @@ function registerNamedAnchors() {
   }
 }
 
-registerNamedAnchors();
+document.addEventListener("DOMContentLoaded", () => {
+  registerNamedAnchors();
+});
