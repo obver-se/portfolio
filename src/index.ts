@@ -1,44 +1,44 @@
-import "./style.sass";
+import './style.sass';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 /*
  * Get the url and the named anchor seperately
  */
 function getUrlAndNamedAnchor(fullUrl: string) {
-  let pieces = fullUrl.split("#");
-  let elementId = pieces.splice(-1)[0];
-  let url = pieces.join('');
+  const pieces = fullUrl.split('#');
+  const elementId = pieces.splice(-1)[0];
+  const url = pieces.join('');
   return [url, elementId];
 }
 
-/* 
- * Find anchor tags that link to other places 
- * on the same page and smooth out the scrolling 
+/*
+ * Find anchor tags that link to other places
+ * on the same page and smooth out the scrolling
  */
 function registerNamedAnchors() {
   const [currentUrl, _] = getUrlAndNamedAnchor(window.location.href);
 
-  let links = document.getElementsByTagName("a");
-  for (let linkIndex in links) {
-    let link = links[linkIndex];
+  const links = document.getElementsByTagName('a');
+  // For each a element
+  Array.from(links).forEach((link) => {
     // If it's a named anchor and it's for this page
-    if (link.href && link.href.includes("#")) {
+    if (link.href && link.href.includes('#')) {
       const [url, elementId] = getUrlAndNamedAnchor(link.href);
-      if (url == currentUrl) {
-        let targetElement = document.getElementById(elementId);
+      if (url === currentUrl) {
+        const targetElement = document.getElementById(elementId);
         // Make it smoothly scroll when clicked
-        link.onclick = function(event) {
+        link.addEventListener('click', (event: MouseEvent) => {
           window.scrollTo({
             top: targetElement.getBoundingClientRect().top,
             behavior: 'smooth',
           });
           event.preventDefault();
-        }
+        });
       }
     }
-  }
+  });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   registerNamedAnchors();
 });
