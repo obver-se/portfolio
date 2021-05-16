@@ -6,9 +6,10 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
  */
 function getUrlAndNamedAnchor(fullUrl: string) {
   const pieces = fullUrl.split('#');
-  const elementId = pieces.splice(-1)[0];
-  const url = pieces.join('');
-  return [url, elementId];
+  if (pieces.length > 1) {
+    return [pieces[0], pieces[1]];
+  }
+  return [pieces[0], null];
 }
 
 /*
