@@ -31,7 +31,7 @@ mixin techIconFontAwesome(text, fontClass, link)
       span(class="block p-1 text-gray-400")= text
 
 mixin gridImages(images)
-  div(class="md:h-full grid-cols-1")
+  div(class="expandable-images md:h-full grid-cols-1")
     div(class="w-full md:h-full grid grid-cols-2 md:grid-cols-2 md:grid-rows-1 gap-2")
       each image, index in images
         div(class="block " + ((index == 0) ? 'col-span-2' : ''))
@@ -41,6 +41,21 @@ mixin gridImages(images)
               | It would appear you browser doesn't support video
           else
             img(src=image['src'], alt=image['alt'], class="w-full h-full object-cover rounded")
+
+
+mixin shadowBox()
+  div(id='image-shadowbox' class="fixed top-0 left-0 bg-material-black z-40 w-full h-full bg-opacity-75 hidden")
+    div(id='prev' class='hover:text-red-400 absolute left-0 top-1/4 w-5/12 h-1/2 text-6xl text-center cursor-pointer')
+      i(class='absolute top-1/2 left-6 -mt-8 fas fa-chevron-left')
+
+    div(id='center-image' class='h-full w-full py-12 px-24 bg-origin-content bg-contain bg-center bg-no-repeat' )
+
+    div(id='next' class='hover:text-red-400 absolute right-0 top-1/4 w-5/12 h-1/2 text-6xl text-center cursor-pointer')
+      i(class='absolute top-1/2 right-6 -mt-8 fas fa-chevron-right')
+
+    div(id='close' class='hover:text-red-400 fixed top-4 right-4 text-6xl cursor-pointer max-w-sm')
+      i(class='fas fa-times-circle')
+
 
 mixin linkList(links)
   div
